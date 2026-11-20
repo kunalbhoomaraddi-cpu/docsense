@@ -7,7 +7,7 @@
 ![CI](https://github.com/kunalbhoomaraddi-cpu/docsense/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-20%20passing-2ea44f)
+![Tests](https://img.shields.io/badge/tests-22%20passing-2ea44f)
 ![Made-up answers](https://img.shields.io/badge/made--up%20answers%20on%20eval-0-2ea44f)
 
 DocSense is a retrieval-augmented generation (RAG) app. Upload PDFs, Markdown or text files, ask a question, and it answers from the documents only. Every sentence links to the exact file and section it came from. When the documents don't contain the answer, it says so instead of guessing.
@@ -58,6 +58,7 @@ question ──► hybrid retrieval (BM25 + TF-IDF [+ Gemini embeddings]) ──
 - **Chunks never cross a section or page.** One chunk = one citation, so a citation can never point at the wrong place.
 - **Hybrid retrieval as the default, even though TF-IDF alone scored slightly higher offline** (Hit@1 88% vs 85%). Hybrid is what lets Gemini embeddings plug in when a key is available, and RRF makes adding a retriever a one-line change. The offline numbers are reported as they are.
 - **Chunk size barely mattered** (300 / 600 / 1000 chars all scored the same), because policy sections are short. I kept 600 as a middle ground for longer PDFs.
+- **The AI can be slow or down; the app can't.** The first live run hit a 60-second timeout from Gemini. Every Gemini call now retries, switches to a lighter fallback model (`gemini-3.5-flash-lite`) if the main one is slow, and if Gemini is completely unavailable the app returns its offline result instead of an error. Tests simulate timeouts and outages.
 - **No vector database.** For a few hundred chunks, in-memory NumPy/scikit-learn is faster and simpler. A store like pgvector or Qdrant becomes worth it at tens of thousands of chunks.
 
 ## Known limitations
@@ -77,7 +78,7 @@ uvicorn docsense.api:app --reload        # open http://localhost:8000
 Optional: copy `.env.example` to `.env` and add a free [Gemini API key](https://aistudio.google.com/apikey) to switch on LLM answers and embeddings.
 
 ```bash
-pytest -q                                # 20 tests, no network needed
+pytest -q                                # 22 tests, no network needed
 python -m evals.run_evals                # regenerate evals/results.md
 GEMINI_API_KEY=... python -m evals.run_evals --llm   # also score Gemini answers
 ```

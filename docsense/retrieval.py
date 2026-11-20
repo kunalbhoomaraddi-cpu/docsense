@@ -7,6 +7,7 @@ and to compare in the eval suite.
 
 from __future__ import annotations
 
+import logging
 import math
 import re
 from collections import Counter
@@ -15,6 +16,8 @@ from typing import Protocol
 import numpy as np
 
 from .ingest import Chunk
+
+log = logging.getLogger("docsense")
 
 STOPWORDS = frozenset(
     """a an and are as at be by can do does for from has have how i if in is it its
@@ -142,8 +145,17 @@ class HybridRetriever:
 
     def fit(self, chunks: list[Chunk]) -> HybridRetriever:
         self.chunks = chunks
+        working = []
         for r in self.retrievers:
-            r.fit(chunks)
+            try:
+                r.fit(chunks)
+                working.append(r)
+            except Exception as e:  # e.g. the embedding API is down: keep the keyword retrievers
+                log.warning("retriever %s disabled: %s", r.name, e)
+        if not working:
+            raise RuntimeError("no retriever could be built")
+        self.retrievers = working
+        self.name = "hybrid(" + "+".join(r.name for r in working) + ")"
         return self
 
     def search(self, query: str, k: int = 5) -> list[tuple[Chunk, float]]:
@@ -151,8 +163,11 @@ class HybridRetriever:
         confidence: dict[str, float] = {}
         by_id = {c.id: c for c in self.chunks}
         depth = max(k * 4, 20)
-        for r in self.retrievers:
-            results = r.search(query, depth)
+        for r in list(self.retrievers):
+            try:
+                results = r.search(query, depth)
+            except Exception:  # a remote retriever failing mid-query must not break the answer
+                continue
             top = results[0][1] if results and results[0][1] > 0 else 1.0
             for rank, (chunk, score) in enumerate(results):
                 fused[chunk.id] = fused.get(chunk.id, 0.0) + 1.0 / (self.rrf_k + rank + 1)

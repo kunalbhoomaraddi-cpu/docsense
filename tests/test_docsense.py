@@ -164,3 +164,28 @@ def test_api_upload_and_reset(api):
 def test_api_rejects_bad_files(api):
     assert api.post("/documents", files={"file": ("x.exe", b"MZ", "application/octet-stream")}).status_code == 400
     assert api.post("/ask", json={"question": ""}).status_code == 422
+
+
+# ---------------- resilience: slow or failing Gemini ----------------
+def test_generate_switches_to_fallback_model(monkeypatch):
+    monkeypatch.setattr("docsense.llm.time.sleep", lambda s: None)
+    seen = []
+
+    def handler(request):
+        seen.append(request.url.path)
+        if "primary" in request.url.path:
+            raise httpx.ReadTimeout("slow")
+        return httpx.Response(200, json={"candidates": [{"content": {"parts": [{"text": "ok [1]"}]}}]})
+
+    client = GeminiClient("k", model="primary", fallback_model="lite", transport=httpx.MockTransport(handler))
+    assert client.generate("hi") == "ok [1]" and client.model == "lite"
+
+
+def test_app_keeps_working_when_gemini_is_down(monkeypatch):
+    monkeypatch.setattr("docsense.llm.time.sleep", lambda s: None)
+    down = GeminiClient("k", fallback_model=None, transport=httpx.MockTransport(lambda r: httpx.Response(503)))
+    ds = DocSense(Config(), gemini=down)  # embeddings fail at startup -> keyword retrievers only
+    ds.add_folder(SAMPLE)
+    assert "gemini-embed" not in ds.retriever.name
+    a = ds.ask("How many days of sick leave do I get?")
+    assert a.found and "12 days" in a.text and a.answerer == "extractive (AI unavailable)"

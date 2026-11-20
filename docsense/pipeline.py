@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import math
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,6 +11,8 @@ from .answer import NOT_FOUND, Answer, ExtractiveAnswerer, LLMAnswerer
 from .ingest import Block, Chunk, chunk_blocks, load_bytes, load_path
 from .llm import GeminiClient
 from .retrieval import build_retriever, relevance, tokenize
+
+log = logging.getLogger("docsense")
 
 
 @dataclass
@@ -28,7 +31,8 @@ class DocSense:
         self.config = config or Config()
         self.gemini = gemini
         llm_on = gemini is not None if use_llm is None else use_llm
-        self.answerer = LLMAnswerer(gemini) if (llm_on and gemini) else ExtractiveAnswerer()
+        self.extractive = ExtractiveAnswerer()
+        self.answerer = LLMAnswerer(gemini) if (llm_on and gemini) else self.extractive
         self.blocks: list[Block] = []
         self.chunks: list[Chunk] = []
         self.retriever = None
@@ -63,8 +67,7 @@ class DocSense:
         n = max(len(self.chunks), 1)
         self.idf = {t: math.log(1 + n / f) for t, f in df.items()}
         self.max_idf = math.log(1 + n)
-        if isinstance(self.answerer, ExtractiveAnswerer):
-            self.answerer.idf, self.answerer.max_idf = self.idf, self.max_idf
+        self.extractive.idf, self.extractive.max_idf = self.idf, self.max_idf
 
     def coverage(self, question: str, chunk: Chunk) -> float:
         """Share of the question's meaning (IDF-weighted words) that appears in the chunk.
@@ -109,4 +112,14 @@ class DocSense:
         if confidence < self.config.min_confidence:
             # Decide *before* calling the LLM: cheaper, and the model never sees weak context.
             return Answer(NOT_FOUND, found=False, confidence=confidence, answerer="threshold")
-        return self.answerer.answer(question, [c for c, _ in results], confidence)
+        chunks = [c for c, _ in results]
+        try:
+            return self.answerer.answer(question, chunks, confidence)
+        except Exception as e:
+            if self.answerer is self.extractive:
+                raise
+            # The LLM is slow or down: answer from the documents without it rather than failing.
+            log.warning("LLM answer failed, using extractive answer: %s", e)
+            answer = self.extractive.answer(question, chunks, confidence)
+            answer.answerer = "extractive (AI unavailable)"
+            return answer
