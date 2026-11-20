@@ -2,6 +2,8 @@
 
 **Ask questions about your documents and get answers that cite their source, or an honest "I couldn't find this".**
 
+**Live demo: [docsense-6bcu.onrender.com](https://docsense-6bcu.onrender.com)** (free hosting: the first visit can take ~50 s to wake up)
+
 ![CI](https://github.com/kunalbhoomaraddi-cpu/docsense/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
