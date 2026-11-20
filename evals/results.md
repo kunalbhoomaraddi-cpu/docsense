@@ -51,3 +51,23 @@ Best balanced threshold on this set: **0.38** (answers 91%, refuses 100%). The a
 - **What should I do if I lose my laptop?** — expected `1 hour`, got: _I couldn't find this in the documents._
 - **Can I work from Goa for a few weeks?** — expected `30 days`, got: _Employees in hybrid roles work from the office at least 2 days per week. [1]_
 - **Can I work remotely from Dubai?** — expected `not allowed`, got: _I couldn't find this in the documents._
+
+## Live run with Gemini (2026-11-20)
+
+The same 43 questions sent to the deployed app (`GEMINI_API_KEY` set: Gemini embeddings join the hybrid
+retriever and Gemini writes the answers). Raw results: `evals/results_gemini_live.json`.
+
+| Answerer | Answer contains the right fact | Cites the right section | Correctly refuses | Made-up answers | Median latency |
+|---|---|---|---|---|---|
+| extractive (offline, above) | 85% | 85% | 100% | 0 | <10 ms |
+| **Gemini (live)** | **33/33 (100%)** | **33/33 (100%)** | **10/10 (100%)** | **0** | 1.1 s |
+
+What changed, and what it means:
+- The 5 vocabulary-gap failures ("vacation" vs "annual leave", "fathers" vs "paternity", "Dubai" vs
+  "outside India") are all answered correctly: embeddings match meaning, not just words.
+- **Refusals now come from two layers.** With Gemini embeddings, retrieval scores run higher, so the
+  confidence threshold refused only 3 of the 10 unanswerable questions before calling the LLM; the
+  prompt's "reply NOT_FOUND" rule plus citation checking caught the other 7. Each layer covers the
+  other's gaps, which is why both exist.
+- **A perfect score means this eval set is now too easy.** The next step is harder questions:
+  multi-part, cross-document, and near-miss unanswerables.

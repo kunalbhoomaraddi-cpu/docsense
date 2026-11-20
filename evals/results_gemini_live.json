@@ -1,0 +1,351 @@
+{
+  "date": "2026-11-20",
+  "app": "https://docsense-6bcu.onrender.com",
+  "config": "hybrid retrieval (BM25 + TF-IDF + gemini-embedding-001), gemini-3.8-flash answers",
+  "rows": [
+    {
+      "q": "How many days of paid annual leave do I get per year?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1891
+    },
+    {
+      "q": "How many unused leave days can I carry forward?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1132
+    },
+    {
+      "q": "How early must I apply for a week of vacation?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1229
+    },
+    {
+      "q": "When do I need a doctor's certificate for sick leave?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1110
+    },
+    {
+      "q": "Can sick leave be carried over to next year?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 831
+    },
+    {
+      "q": "How long is maternity leave?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 976
+    },
+    {
+      "q": "How much paternity leave do fathers get?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1469
+    },
+    {
+      "q": "What leave do adoptive parents get?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1986
+    },
+    {
+      "q": "How many public holidays does the company observe?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1129
+    },
+    {
+      "q": "What happens if my manager asks me to work on a holiday?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1202
+    },
+    {
+      "q": "Who approves unpaid leave?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1059
+    },
+    {
+      "q": "How far in advance must business trips be booked?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1232
+    },
+    {
+      "q": "Can I fly business class?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1225
+    },
+    {
+      "q": "What is the hotel limit in Bengaluru?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 934
+    },
+    {
+      "q": "What is the hotel budget in a non-metro city?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 832
+    },
+    {
+      "q": "What is the daily meal allowance on domestic trips?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1326
+    },
+    {
+      "q": "Is alcohol reimbursed?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1206
+    },
+    {
+      "q": "What is the deadline for submitting expense claims?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1158
+    },
+    {
+      "q": "Do I need a receipt for a ₹300 expense?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1080
+    },
+    {
+      "q": "How much is reimbursed per km for my own car?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 5278
+    },
+    {
+      "q": "What is the minimum password length?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 729
+    },
+    {
+      "q": "Which systems require MFA?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1121
+    },
+    {
+      "q": "After how many minutes must a laptop auto-lock?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1075
+    },
+    {
+      "q": "What should I do if I lose my laptop?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1290
+    },
+    {
+      "q": "How do I get new software installed?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1091
+    },
+    {
+      "q": "Can I keep customer data on my personal Google Drive?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 959
+    },
+    {
+      "q": "How do I report a phishing email?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1650
+    },
+    {
+      "q": "How many days a week must hybrid employees be in the office?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1124
+    },
+    {
+      "q": "Can I work from Goa for a few weeks?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1547
+    },
+    {
+      "q": "Can I work remotely from Dubai?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1310
+    },
+    {
+      "q": "How much is the home office allowance?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1013
+    },
+    {
+      "q": "What are the core collaboration hours?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 1071
+    },
+    {
+      "q": "When must I return my laptop after resigning?",
+      "answerable": true,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": true,
+      "ms": 988
+    },
+    {
+      "q": "What is the company's dress code?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1009
+    },
+    {
+      "q": "How much is the annual performance bonus?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1127
+    },
+    {
+      "q": "Does the company provide health insurance for parents?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1181
+    },
+    {
+      "q": "What is the notice period for resignation?",
+      "answerable": false,
+      "answerer": "threshold",
+      "correct": true,
+      "cited": null,
+      "ms": 459
+    },
+    {
+      "q": "Is there a gym membership benefit?",
+      "answerable": false,
+      "answerer": "threshold",
+      "correct": true,
+      "cited": null,
+      "ms": 478
+    },
+    {
+      "q": "What is the CEO's name?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1024
+    },
+    {
+      "q": "How many employees does Northwind Tech have?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1004
+    },
+    {
+      "q": "What is the stock option vesting schedule?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1177
+    },
+    {
+      "q": "Can I bring my dog to the office?",
+      "answerable": false,
+      "answerer": "gemini",
+      "correct": true,
+      "cited": null,
+      "ms": 1109
+    },
+    {
+      "q": "What is the referral bonus for hiring a friend?",
+      "answerable": false,
+      "answerer": "threshold",
+      "correct": true,
+      "cited": null,
+      "ms": 484
+    }
+  ]
+}

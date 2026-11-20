@@ -198,7 +198,12 @@ def write_report(items, grid, sweep, best, default, e2e) -> None:
     for f in fails:
         lines.append(f"- **{f['question']}** — expected `{f['expected']}`, got: _{f['got']}_")
     lines.append("")
-    (ROOT / "evals" / "results.md").write_text("\n".join(lines))
+    out = ROOT / "evals" / "results.md"
+    # Keep sections recorded from live runs (e.g. the Gemini run against the deployed app).
+    marker = "\n## Live run with Gemini"
+    previous = out.read_text() if out.exists() else ""
+    live = previous[previous.index(marker):] if marker in previous else ""
+    out.write_text("\n".join(lines) + live)
     (ROOT / "evals" / "results.json").write_text(
         json.dumps({"retrieval": grid, "threshold_sweep": sweep, "end_to_end": e2e}, indent=2)
     )
