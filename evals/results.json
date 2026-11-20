@@ -1,0 +1,260 @@
+{
+  "retrieval": [
+    {
+      "retriever": "bm25",
+      "chunk_chars": 300,
+      "hit@1": 0.8484848484848485,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9023569023569024
+    },
+    {
+      "retriever": "bm25",
+      "chunk_chars": 600,
+      "hit@1": 0.8484848484848485,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9027777777777778
+    },
+    {
+      "retriever": "bm25",
+      "chunk_chars": 1000,
+      "hit@1": 0.8484848484848485,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9027777777777778
+    },
+    {
+      "retriever": "tfidf",
+      "chunk_chars": 300,
+      "hit@1": 0.8787878787878788,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9175084175084175
+    },
+    {
+      "retriever": "tfidf",
+      "chunk_chars": 600,
+      "hit@1": 0.8787878787878788,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9179292929292929
+    },
+    {
+      "retriever": "tfidf",
+      "chunk_chars": 1000,
+      "hit@1": 0.8787878787878788,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9179292929292929
+    },
+    {
+      "retriever": "hybrid",
+      "chunk_chars": 300,
+      "hit@1": 0.8484848484848485,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9023569023569024
+    },
+    {
+      "retriever": "hybrid",
+      "chunk_chars": 600,
+      "hit@1": 0.8484848484848485,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9027777777777778
+    },
+    {
+      "retriever": "hybrid",
+      "chunk_chars": 1000,
+      "hit@1": 0.8484848484848485,
+      "hit@3": 0.9696969696969697,
+      "mrr": 0.9027777777777778
+    }
+  ],
+  "threshold_sweep": [
+    {
+      "threshold": 0.1,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.12,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.14,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.16,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.18,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.2,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.22,
+      "answered": 1.0,
+      "refused": 0.3,
+      "balanced": 0.65
+    },
+    {
+      "threshold": 0.24,
+      "answered": 1.0,
+      "refused": 0.4,
+      "balanced": 0.7
+    },
+    {
+      "threshold": 0.26,
+      "answered": 0.9696969696969697,
+      "refused": 0.4,
+      "balanced": 0.6848484848484848
+    },
+    {
+      "threshold": 0.28,
+      "answered": 0.9696969696969697,
+      "refused": 0.4,
+      "balanced": 0.6848484848484848
+    },
+    {
+      "threshold": 0.3,
+      "answered": 0.9696969696969697,
+      "refused": 0.4,
+      "balanced": 0.6848484848484848
+    },
+    {
+      "threshold": 0.32,
+      "answered": 0.9393939393939394,
+      "refused": 0.7,
+      "balanced": 0.8196969696969697
+    },
+    {
+      "threshold": 0.34,
+      "answered": 0.9393939393939394,
+      "refused": 0.7,
+      "balanced": 0.8196969696969697
+    },
+    {
+      "threshold": 0.36,
+      "answered": 0.9393939393939394,
+      "refused": 0.9,
+      "balanced": 0.9196969696969697
+    },
+    {
+      "threshold": 0.38,
+      "answered": 0.9090909090909091,
+      "refused": 1.0,
+      "balanced": 0.9545454545454546
+    },
+    {
+      "threshold": 0.4,
+      "answered": 0.9090909090909091,
+      "refused": 1.0,
+      "balanced": 0.9545454545454546
+    },
+    {
+      "threshold": 0.42,
+      "answered": 0.9090909090909091,
+      "refused": 1.0,
+      "balanced": 0.9545454545454546
+    },
+    {
+      "threshold": 0.44,
+      "answered": 0.8181818181818182,
+      "refused": 1.0,
+      "balanced": 0.9090909090909092
+    },
+    {
+      "threshold": 0.46,
+      "answered": 0.7878787878787878,
+      "refused": 1.0,
+      "balanced": 0.8939393939393939
+    },
+    {
+      "threshold": 0.48,
+      "answered": 0.7878787878787878,
+      "refused": 1.0,
+      "balanced": 0.8939393939393939
+    },
+    {
+      "threshold": 0.5,
+      "answered": 0.7878787878787878,
+      "refused": 1.0,
+      "balanced": 0.8939393939393939
+    },
+    {
+      "threshold": 0.52,
+      "answered": 0.7575757575757576,
+      "refused": 1.0,
+      "balanced": 0.8787878787878788
+    },
+    {
+      "threshold": 0.54,
+      "answered": 0.7272727272727273,
+      "refused": 1.0,
+      "balanced": 0.8636363636363636
+    },
+    {
+      "threshold": 0.56,
+      "answered": 0.7272727272727273,
+      "refused": 1.0,
+      "balanced": 0.8636363636363636
+    },
+    {
+      "threshold": 0.58,
+      "answered": 0.696969696969697,
+      "refused": 1.0,
+      "balanced": 0.8484848484848485
+    },
+    {
+      "threshold": 0.6,
+      "answered": 0.6363636363636364,
+      "refused": 1.0,
+      "balanced": 0.8181818181818181
+    }
+  ],
+  "end_to_end": {
+    "extractive": {
+      "answer_accuracy": 0.8484848484848485,
+      "citation_accuracy": 0.8484848484848485,
+      "refusal_accuracy": 1.0,
+      "hallucinated_answers": 0,
+      "failures": [
+        {
+          "question": "How early must I apply for a week of vacation?",
+          "expected": "14 days",
+          "got": "I couldn't find this in the documents."
+        },
+        {
+          "question": "How much paternity leave do fathers get?",
+          "expected": "4 weeks",
+          "got": "Employees get 12 days of paid sick leave per year. [1]"
+        },
+        {
+          "question": "What should I do if I lose my laptop?",
+          "expected": "1 hour",
+          "got": "I couldn't find this in the documents."
+        },
+        {
+          "question": "Can I work from Goa for a few weeks?",
+          "expected": "30 days",
+          "got": "Employees in hybrid roles work from the office at least 2 days per week. [1]"
+        },
+        {
+          "question": "Can I work remotely from Dubai?",
+          "expected": "not allowed",
+          "got": "I couldn't find this in the documents."
+        }
+      ]
+    }
+  }
+}

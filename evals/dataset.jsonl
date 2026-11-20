@@ -1,0 +1,43 @@
+{"question": "How many days of paid annual leave do I get per year?", "answerable": true, "source": "leave-policy.md", "section": "Annual leave", "answer_contains": "24 days"}
+{"question": "How many unused leave days can I carry forward?", "answerable": true, "source": "leave-policy.md", "section": "Annual leave", "answer_contains": "10"}
+{"question": "How early must I apply for a week of vacation?", "answerable": true, "source": "leave-policy.md", "section": "Annual leave", "answer_contains": "14 days"}
+{"question": "When do I need a doctor's certificate for sick leave?", "answerable": true, "source": "leave-policy.md", "section": "Sick leave", "answer_contains": "2 consecutive days"}
+{"question": "Can sick leave be carried over to next year?", "answerable": true, "source": "leave-policy.md", "section": "Sick leave", "answer_contains": "cannot be carried forward"}
+{"question": "How long is maternity leave?", "answerable": true, "source": "leave-policy.md", "section": "Parental leave", "answer_contains": "26 weeks"}
+{"question": "How much paternity leave do fathers get?", "answerable": true, "source": "leave-policy.md", "section": "Parental leave", "answer_contains": "4 weeks"}
+{"question": "What leave do adoptive parents get?", "answerable": true, "source": "leave-policy.md", "section": "Parental leave", "answer_contains": "12 weeks"}
+{"question": "How many public holidays does the company observe?", "answerable": true, "source": "leave-policy.md", "section": "Public holidays", "answer_contains": "12 public holidays"}
+{"question": "What happens if my manager asks me to work on a holiday?", "answerable": true, "source": "leave-policy.md", "section": "Public holidays", "answer_contains": "compensatory"}
+{"question": "Who approves unpaid leave?", "answerable": true, "source": "leave-policy.md", "section": "Leave without pay", "answer_contains": "department head"}
+{"question": "How far in advance must business trips be booked?", "answerable": true, "source": "travel-and-expenses.md", "section": "Booking travel", "answer_contains": "7 days"}
+{"question": "Can I fly business class?", "answerable": true, "source": "travel-and-expenses.md", "section": "Booking travel", "answer_contains": "8 hours"}
+{"question": "What is the hotel limit in Bengaluru?", "answerable": true, "source": "travel-and-expenses.md", "section": "Hotel limits", "answer_contains": "8,000"}
+{"question": "What is the hotel budget in a non-metro city?", "answerable": true, "source": "travel-and-expenses.md", "section": "Hotel limits", "answer_contains": "5,000"}
+{"question": "What is the daily meal allowance on domestic trips?", "answerable": true, "source": "travel-and-expenses.md", "section": "Daily allowance", "answer_contains": "1,500"}
+{"question": "Is alcohol reimbursed?", "answerable": true, "source": "travel-and-expenses.md", "section": "Daily allowance", "answer_contains": "never"}
+{"question": "What is the deadline for submitting expense claims?", "answerable": true, "source": "travel-and-expenses.md", "section": "Submitting expenses", "answer_contains": "30 days"}
+{"question": "Do I need a receipt for a \u20b9300 expense?", "answerable": true, "source": "travel-and-expenses.md", "section": "Submitting expenses", "answer_contains": "500"}
+{"question": "How much is reimbursed per km for my own car?", "answerable": true, "source": "travel-and-expenses.md", "section": "Local conveyance", "answer_contains": "12"}
+{"question": "What is the minimum password length?", "answerable": true, "source": "it-security.md", "section": "Passwords and sign-in", "answer_contains": "14 characters"}
+{"question": "Which systems require MFA?", "answerable": true, "source": "it-security.md", "section": "Passwords and sign-in", "answer_contains": "VPN"}
+{"question": "After how many minutes must a laptop auto-lock?", "answerable": true, "source": "it-security.md", "section": "Devices", "answer_contains": "5 minutes"}
+{"question": "What should I do if I lose my laptop?", "answerable": true, "source": "it-security.md", "section": "Devices", "answer_contains": "1 hour"}
+{"question": "How do I get new software installed?", "answerable": true, "source": "it-security.md", "section": "Software", "answer_contains": "IT ticket"}
+{"question": "Can I keep customer data on my personal Google Drive?", "answerable": true, "source": "it-security.md", "section": "Data handling", "answer_contains": "must not be stored"}
+{"question": "How do I report a phishing email?", "answerable": true, "source": "it-security.md", "section": "Phishing", "answer_contains": "Report phishing"}
+{"question": "How many days a week must hybrid employees be in the office?", "answerable": true, "source": "remote-work.md", "section": "Hybrid schedule", "answer_contains": "2 days"}
+{"question": "Can I work from Goa for a few weeks?", "answerable": true, "source": "remote-work.md", "section": "Working from another city", "answer_contains": "30 days"}
+{"question": "Can I work remotely from Dubai?", "answerable": true, "source": "remote-work.md", "section": "Working from another city", "answer_contains": "not allowed"}
+{"question": "How much is the home office allowance?", "answerable": true, "source": "remote-work.md", "section": "Home office support", "answer_contains": "15,000"}
+{"question": "What are the core collaboration hours?", "answerable": true, "source": "remote-work.md", "section": "Core hours", "answer_contains": "11:00"}
+{"question": "When must I return my laptop after resigning?", "answerable": true, "source": "remote-work.md", "section": "Equipment return", "answer_contains": "7 days"}
+{"question": "What is the company's dress code?", "answerable": false}
+{"question": "How much is the annual performance bonus?", "answerable": false}
+{"question": "Does the company provide health insurance for parents?", "answerable": false}
+{"question": "What is the notice period for resignation?", "answerable": false}
+{"question": "Is there a gym membership benefit?", "answerable": false}
+{"question": "What is the CEO's name?", "answerable": false}
+{"question": "How many employees does Northwind Tech have?", "answerable": false}
+{"question": "What is the stock option vesting schedule?", "answerable": false}
+{"question": "Can I bring my dog to the office?", "answerable": false}
+{"question": "What is the referral bonus for hiring a friend?", "answerable": false}

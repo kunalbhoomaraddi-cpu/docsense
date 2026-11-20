@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DocSense — cited answers from your documents</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#15181d; --soft:#5b6472; --line:#e3e6eb; --accent:#2f5bea; --warn:#9a5b00; --warnbg:#fff5e6; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width:760px; margin:0 auto; padding:40px 20px 80px; }
+  h1 { margin:0 0 4px; font-size:30px; letter-spacing:-.02em; }
+  .sub { color:var(--soft); margin:0 0 28px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin-bottom:16px; }
+  form { display:flex; gap:8px; }
+  input[type=text] { flex:1; padding:12px 14px; border:1px solid var(--line); border-radius:8px; font:inherit; }
+  button { padding:12px 18px; border:0; border-radius:8px; background:var(--accent); color:#fff; font:inherit; font-weight:600; cursor:pointer; }
+  button.ghost { background:transparent; color:var(--accent); border:1px solid var(--line); padding:8px 12px; font-weight:500; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+  .chip { font-size:13px; padding:5px 10px; border-radius:999px; border:1px solid var(--line); background:#fff; cursor:pointer; color:var(--soft); }
+  .answer { font-size:17px; }
+  .answer sup { color:var(--accent); font-weight:600; }
+  .notfound { background:var(--warnbg); color:var(--warn); border-color:#f3dcb8; }
+  .cite { font-size:14px; color:var(--soft); border-top:1px solid var(--line); padding-top:10px; margin-top:10px; }
+  .cite b { color:var(--ink); }
+  .meta { font-size:12px; color:var(--soft); margin-top:10px; }
+  .docs { font-size:14px; color:var(--soft); display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  label.upload { cursor:pointer; color:var(--accent); font-weight:600; }
+  input[type=file] { display:none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>DocSense</h1>
+  <p class="sub">Ask a question about the documents. Every answer cites its source, and it says so when the answer isn't there.</p>
+
+  <div class="card">
+    <form id="ask">
+      <input id="q" type="text" placeholder="e.g. How many sick days do I get?" autocomplete="off" required maxlength="500" />
+      <button type="submit">Ask</button>
+    </form>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="card docs">
+    <span id="docs">Loading documents…</span>
+    <label class="upload">+ Upload PDF / MD / TXT<input id="file" type="file" accept=".pdf,.md,.txt" /></label>
+    <button class="ghost" id="reset" type="button">Reset to sample</button>
+  </div>
+</main>
+<script>
+const examples = ["How many sick days do I get?", "What is the hotel limit in Mumbai?", "Which systems need MFA?", "What is the dress code?"];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+for (const e of examples) {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.textContent = e;
+  b.onclick = () => { $("q").value = e; ask(); };
+  $("chips").appendChild(b);
+}
+
+async function refreshDocs() {
+  const h = await (await fetch("/health")).json();
+  $("docs").textContent = `${h.documents.length} documents · ${h.chunks} chunks · answerer: ${h.answerer}`;
+}
+
+async function ask(ev) {
+  if (ev) ev.preventDefault();
+  const question = $("q").value.trim();
+  if (!question) return;
+  $("out").innerHTML = '<div class="card">Thinking…</div>';
+  const r = await fetch("/ask", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({ question }) });
+  if (!r.ok) { $("out").innerHTML = '<div class="card notfound">Something went wrong. Try again.</div>'; return; }
+  const a = await r.json();
+  const text = esc(a.text).replace(/\[(\d+)\]/g, "<sup>[$1]</sup>");
+  const cites = a.citations.map(c => `<div class="cite"><b>[${c.n}] ${esc(c.location)}</b><br>${esc(c.snippet)}</div>`).join("");
+  $("out").innerHTML = `<div class="card ${a.found ? "" : "notfound"}"><div class="answer">${text}</div>${cites}
+    <div class="meta">confidence ${a.confidence.toFixed(2)} · ${esc(a.answerer)}</div></div>`;
+}
+
+$("ask").addEventListener("submit", ask);
+$("file").addEventListener("change", async () => {
+  const f = $("file").files[0]; if (!f) return;
+  const fd = new FormData(); fd.append("file", f);
+  $("docs").textContent = "Uploading…";
+  const r = await fetch("/documents", { method: "POST", body: fd });
+  if (!r.ok) alert((await r.json()).detail || "Upload failed");
+  $("file").value = ""; refreshDocs();
+});
+$("reset").addEventListener("click", async () => { await fetch("/documents", { method: "DELETE" }); refreshDocs(); });
+refreshDocs();
+</script>
+</body>
+</html>
